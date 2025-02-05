@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.student.management.system.entity.Student;
 import com.student.management.system.repository.StudentRepository;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -30,8 +35,13 @@ public class StudentController {
     }
     
     @GetMapping("/{id}")
-    public Optional<Student> findStudent(@PathVariable("id") String id) {
-    	return repository.findById(id);
+    public ResponseEntity<Object> findStudent(@PathVariable("id") String id) {
+    	
+    	 Optional<Student> student = repository.findById(id);
+    	    if (student == null) {
+    	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    	    }
+    	    return ResponseEntity.ok(student);
     }
 
     @PostMapping
@@ -40,13 +50,13 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable String id, @RequestBody Student student) {
+    public Student updateStudent(@PathVariable(("id")) String id, @RequestBody Student student) {
         student.setId(id);
         return repository.save(student);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable String id) {
+    public void deleteStudent(@PathVariable("id") String id) {
         repository.deleteById(id);
     }
 }
