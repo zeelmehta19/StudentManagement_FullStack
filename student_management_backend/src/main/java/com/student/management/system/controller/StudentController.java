@@ -59,4 +59,12 @@ public class StudentController {
     public void deleteStudent(@PathVariable("id") String id) {
         repository.deleteById(id);
     }
+    
+    @GetMapping("/search")
+    public ResponseEntity<List<Student>> findStudentsByName(@RequestParam("name") String name) {
+    	System.out.println(name);
+        List<Student> students = repository.findByNameContainingIgnoreCase(name);
+        return ResponseEntity.ok(students);
+    }
+    
 }
