@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import StudentSearch from "./StudentSearch";
 
 const Home = () => {
   const [students, setStudents] = useState([]);
@@ -15,6 +16,7 @@ const Home = () => {
     <div>
       <h1>Student Management System</h1>
       <Link to="/add-student"><button>Add Student</button></Link>
+      <StudentSearch />
       <ul>
         {students.map(student => (
           <li key={student.id}>

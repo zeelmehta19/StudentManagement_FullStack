@@ -8,11 +8,8 @@ const EditStudent = () => {
   const [student, setStudent] = useState({ id: "", name: "", email: "" });
 
   useEffect(() => {
-    console.log("In useeffect");
-    console.log(id);
     axios.get(`http://localhost:8080/students/${id}`)
       .then(res => setStudent(res.data));
-    console.log(student);
   }, [id]);
 
   const handleChange = (e) => setStudent({ ...student, [e.target.name]: e.target.value });
