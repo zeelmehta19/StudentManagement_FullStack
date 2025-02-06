@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import StudentSearch from "./StudentSearch";
-
+import DisplayStudent from "./DisplayStudent";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "react-bootstrap";
 const Home = () => {
   const [students, setStudents] = useState([]);
+  const[isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:8080/students")
@@ -13,24 +15,24 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Student Management System</h1>
-      <Link to="/add-student"><button>Add Student</button></Link>
-      <StudentSearch />
-      <ul>
-        {students.map(student => (
-          <li key={student.id}>
-            {student.name} - {student.email}
-            {console.log(student.id)}
-            <Link to={`/edit-student/${student.id}`}>Edit</Link>
-            <button onClick={() => axios.delete(`http://localhost:8080/students/${student.id}`)
-              .then(() => setStudents(students.filter(s => s.id !== student.id)))}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <Row className="mt-2 mb-2 pb-2 pt-2" style={{backgroundColor:"black", color:"white"}}>
+        <Col>
+          <h1>
+          Student Management System
+          </h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col >
+          <StudentSearch students={students} setStudents={setStudents} isSearch={isSearch} setIsSearch={setIsSearch}/>
+        </Col>
+      </Row>
+      <Row>
+        {!isSearch && 
+        < DisplayStudent students={students} setStudents={setStudents}/>}
+      </Row>
+    </Container>
   );
 };
 

@@ -11,7 +11,21 @@ public class Student {
     private String name;
     private int age;
     private String email;
+    private String phone;
+    private String classval;
     
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getClassval() {
+		return classval;
+	}
+	public void setClassval(String classval) {
+		this.classval = classval;
+	}
 	public String getId() {
 		return id;
 	}

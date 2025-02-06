@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Row, Col, Form, Container} from "react-bootstrap";
 
 const EditStudent = () => {
   const { id } = useParams();
@@ -21,15 +23,78 @@ const EditStudent = () => {
   };
 
   return (
-    <div>
-      <h2>Edit Student</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="id" value={student.id} onChange={handleChange} required />
-        <input name="name" value={student.name} onChange={handleChange} required />
-        <input name="email" value={student.email} onChange={handleChange} required />
-        <button type="submit">Update</button>
-      </form>
-    </div>
+    <>
+    <Container>
+    <Form onSubmit={handleSubmit}>
+      <Row className="mb-4 mt-4">
+          <Form.Group >
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={student.name}
+              name="name"
+              placeholder="Name"
+              onChange={handleChange}
+            />
+          </Form.Group>
+      </Row>
+      <Row className="mb-4">
+          <Form.Group  >
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              value={student.email}
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}  
+              />            
+          </Form.Group>
+      </Row>
+      <Row className="mb-4">
+          <Form.Group >
+            <Form.Label>Age</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={student.age}
+              name="age"
+              placeholder="Age"
+              onChange={handleChange}
+            />
+          </Form.Group>
+      </Row>
+      <Row className="mb-4">
+          <Form.Group  >
+            <Form.Label>Class</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={student.classval}
+              name="classval"
+              placeholder="Class"
+              onChange={handleChange}  
+              />            
+          </Form.Group>
+      </Row>
+      <Row className="mb-4">
+          <Form.Group >
+            <Form.Label>Phone</Form.Label>
+            <Form.Control
+              required
+              type="tel"
+              name="phone"
+              value={student.phone}
+              placeholder="Phone"
+              onChange={handleChange}  
+              />            
+          </Form.Group>
+      </Row>
+      <Button type="submit">Update</Button>
+    </Form>
+    </Container>
+    </>
   );
 };
 
