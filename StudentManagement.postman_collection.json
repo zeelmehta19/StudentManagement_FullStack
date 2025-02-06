@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "a4f1def6-90ad-4206-8c29-4a843e95181a",
+		"name": "StudentManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28257966"
+	},
+	"item": [
+		{
+			"name": "Find All Students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/students"
+			},
+			"response": []
+		},
+		{
+			"name": "Find By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/students/search?name=Test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"TestUser1\",\r\n    \"age\":20,\r\n    \"email\":\"testuser1@gmail.com\",\r\n    \"classval\":12,\r\n    \"phone\":9876543210\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/students"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"TestUser1\",\r\n    \"age\":20,\r\n    \"email\":\"testuser1@gmail.com\",\r\n    \"classval\":12,\r\n    \"phone\":9876543210\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/students/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/students/1"
+			},
+			"response": []
+		}
+	]
+}
